@@ -1,0 +1,19 @@
+#!/bin/bash
+# Modify some config settings using environment variables.
+set -ex
+set -euo pipefail
+
+jqm () {
+  jq "$1" config.json > config.json.tmp
+  mv config.json.tmp config.json
+}
+
+jqm '.LogSettings.EnableConsole = true'
+jqm '.LogSettings.ConsoleLevel = "ERROR"'
+jqm '.FileSettings.Directory = "/opt/mattermost/data/"'
+jqm '.FileSettings.EnablePublicLink = true'
+jqm '.ServiceSettings.ListenAddress = ":80"'
+jqm '.ServiceSettings.Forward80To443 = false'
+
+jqm ".SqlSettings.DriverName = \"${MATTERMOST_DB_TYPE}\""
+jqm ".SqlSettings.DataSource = \"${MATTERMOST_DB_DATASOURCE}\""
