@@ -12,6 +12,8 @@ It exposes a non-HTTPS port at port 80. You can use caddy/nginx/etc to provide S
 * `MATTERMOST_DB_TYPE` - `postgres` or `mysql`
 * `MATTERMOST_DB_DATASOURCE` - depending on the database type, a string of either the form `postgres://mmuser:<mmuser-password>@<host-name-or-IP>:5432/mattermost?sslmode=disable&connect_timeout=10` or `mmuser:<mmuser-password>@tcp(<host-name-or-IP>:3306)/mattermost?charset=utf8mb4,utf8&writeTimeout=30s`
 
+You can set most settings via environment variables: https://docs.mattermost.com/administration/config-settings.html#environment-variables
+
 e.g.
 
 ```shell
